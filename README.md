@@ -88,15 +88,15 @@ This starts PostgreSQL, Redis, and the API. The API is exposed on port 3000.
 
 ### Helpful Docker Commands
 
-| Command | Description |
-| ---- | ---- |
-| `docker compose up -d` | Start all services in the background |
-| `docker compose up --build -d` | Rebuild and start container after code changes |
-| `docker compose logs -f` | Tail logs for all running services |
-| `docker compose logs -f api` | Tail logs for specifically the API service |
+| Command                              | Description                                                                               |
+| ------------------------------------ | ----------------------------------------------------------------------------------------- |
+| `docker compose up -d`               | Start all services in the background                                                      |
+| `docker compose up --build -d`       | Rebuild and start container after code changes                                            |
+| `docker compose logs -f`             | Tail logs for all running services                                                        |
+| `docker compose logs -f api`         | Tail logs for specifically the API service                                                |
 | `docker compose run --rm preprocess` | Manually run the promo code preprocessing step (useful if you added the data files later) |
-| `docker compose down` | Stop and remove containers |
-| `docker compose down -v` | Stop, remove containers, and **delete entire database/redis volumes** |
+| `docker compose down`                | Stop and remove containers                                                                |
+| `docker compose down -v`             | Stop, remove containers, and **delete entire database/redis volumes**                     |
 
 ## API Endpoints
 
@@ -133,14 +133,12 @@ All endpoints are prefixed with `/api`.
 
 ```json
 {
-  "items": [
-    { "productId": "481a9839-5e90-4052-9205-db45c241fd06", "quantity": 2 }
-  ],
+  "items": [{ "productId": 1, "quantity": 2 }],
   "couponCode": "AFNQ7W9S"
 }
 ```
 
-Only `productId` and `quantity` are required per item. Prices are fetched from the database. The `couponCode` is optional (8-10 characters).
+Only `productId` (integer) and `quantity` are required per item. Prices are fetched from the database. The `couponCode` is optional (8-10 characters).
 
 **Response** includes the full billing breakdown:
 
@@ -213,7 +211,7 @@ The preprocessing script uses worker threads (one per `.gz` file) with `redis-cl
 
 | Column     | Type         | Description                                     |
 | ---------- | ------------ | ----------------------------------------------- |
-| id         | uuid         | Primary key                                     |
+| id         | serial       | Primary key (auto-increment integer)            |
 | name       | varchar(255) | Product name                                    |
 | category   | varchar(100) | Product category                                |
 | price      | real         | Product price                                   |
@@ -241,7 +239,7 @@ The preprocessing script uses worker threads (one per `.gz` file) with `redis-cl
 | ---------- | --------- | ----------------------------- |
 | id         | uuid      | Primary key                   |
 | order_id   | uuid      | FK to orders (cascade delete) |
-| product_id | uuid      | FK to products                |
+| product_id | integer   | FK to products                |
 | quantity   | integer   | Item quantity                 |
 | unit_price | real      | Price at time of order        |
 | created_at | timestamp | Creation timestamp            |
@@ -257,7 +255,7 @@ src/
   database/
     database.module.ts             # Drizzle ORM setup (global)
     schema.ts                      # Schema barrel export
-    seed.ts                        # Seed 9 dessert products
+    seed.ts                        # Legacy seed script
     schemas/
       products.schema.ts
       orders.schema.ts
@@ -282,6 +280,7 @@ src/
     promo.module.ts
 scripts/
   preprocess-coupons.js            # Bulk-load coupons into Redis
+  seed-products.js                 # Seed product data
 drizzle/                           # Migration files
 ```
 
