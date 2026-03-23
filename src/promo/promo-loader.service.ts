@@ -16,7 +16,7 @@ export class PromoLoaderService implements OnModuleDestroy {
   private readonly fileLabels = ['couponbase1', 'couponbase2', 'couponbase3'];
   private readonly minFileCount = 2;
 
-  constructor(@Inject('REDIS_CLIENT') private readonly redis: Redis) {}
+  constructor(@Inject('REDIS_CLIENT') private readonly redis: Redis) { }
 
   /** e.g. coupons:couponbase1:A */
   private shardKey(fileLabel: string, code: string): string {
