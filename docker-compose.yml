@@ -49,8 +49,6 @@ services:
         'apk add --no-cache redis && node /scripts/preprocess-coupons.js /data',
       ]
     restart: 'no'
-    profiles:
-      - tools
 
 volumes:
   pgdata:

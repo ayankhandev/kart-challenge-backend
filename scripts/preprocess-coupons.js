@@ -427,8 +427,8 @@ if (!isMainThread) {
     }
 
     if (files.length === 0) {
-      console.error(`ERROR: No coupon files found in ${DATA_DIR}`);
-      process.exit(1);
+      console.log(`==> No coupon files found in ${DATA_DIR}. Skipping preprocessing...`);
+      process.exit(0);
     }
 
     // 5. Spawn worker threads — one per file, true parallelism

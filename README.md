@@ -86,6 +86,18 @@ docker compose up -d
 
 This starts PostgreSQL, Redis, and the API. The API is exposed on port 3000.
 
+### Helpful Docker Commands
+
+| Command | Description |
+| ---- | ---- |
+| `docker compose up -d` | Start all services in the background |
+| `docker compose up --build -d` | Rebuild and start container after code changes |
+| `docker compose logs -f` | Tail logs for all running services |
+| `docker compose logs -f api` | Tail logs for specifically the API service |
+| `docker compose run --rm preprocess` | Manually run the promo code preprocessing step (useful if you added the data files later) |
+| `docker compose down` | Stop and remove containers |
+| `docker compose down -v` | Stop, remove containers, and **delete entire database/redis volumes** |
+
 ## API Endpoints
 
 All endpoints are prefixed with `/api`.
