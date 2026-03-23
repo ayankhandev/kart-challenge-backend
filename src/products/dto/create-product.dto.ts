@@ -4,7 +4,25 @@ import {
   IsNumber,
   IsPositive,
   MaxLength,
+  IsOptional,
+  IsUrl,
+  ValidateNested,
 } from 'class-validator';
+import { Type } from 'class-transformer';
+
+export class ProductImageDto {
+  @IsUrl()
+  thumbnail: string;
+
+  @IsUrl()
+  mobile: string;
+
+  @IsUrl()
+  tablet: string;
+
+  @IsUrl()
+  desktop: string;
+}
 
 export class CreateProductDto {
   @IsString()
@@ -20,4 +38,9 @@ export class CreateProductDto {
   @IsNumber({ maxDecimalPlaces: 2 })
   @IsPositive()
   price: number;
+
+  @IsOptional()
+  @ValidateNested()
+  @Type(() => ProductImageDto)
+  image?: ProductImageDto;
 }

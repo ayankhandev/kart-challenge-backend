@@ -6,6 +6,7 @@ import {
   real,
   integer,
   index,
+  serial,
 } from 'drizzle-orm/pg-core';
 import { relations } from 'drizzle-orm';
 import { products } from './products.schema';
@@ -42,7 +43,7 @@ export const orderItems = pgTable(
     orderId: uuid('order_id')
       .notNull()
       .references(() => orders.id, { onDelete: 'cascade' }),
-    productId: uuid('product_id')
+    productId: integer('product_id')
       .notNull()
       .references(() => products.id),
     quantity: integer('quantity').notNull().default(1),

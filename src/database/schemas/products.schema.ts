@@ -1,6 +1,6 @@
 import {
   pgTable,
-  uuid,
+  serial,
   varchar,
   timestamp,
   real,
@@ -11,7 +11,7 @@ import {
 export const products = pgTable(
   'products',
   {
-    id: uuid('id').defaultRandom().primaryKey(),
+    id: serial('id').primaryKey(),
     name: varchar('name', { length: 255 }).notNull(),
     category: varchar('category', { length: 100 }).notNull(),
     price: real('price').notNull(),

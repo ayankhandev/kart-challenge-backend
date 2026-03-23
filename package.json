@@ -24,7 +24,8 @@
     "db:studio": "drizzle-kit studio",
     "db:seed": "ts-node src/database/seed.ts",
     "prepare": "husky",
-    "preprocess-coupons": "node scripts/preprocess-coupons.js"
+    "preprocess-coupons": "node scripts/preprocess-coupons.js",
+    "seed-products": "node scripts/seed-products.js"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",

@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Query, ParseUUIDPipe } from '@nestjs/common';
+import { Controller, Get, Param, Query, ParseIntPipe } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { QueryProductDto } from './dto';
 
@@ -12,7 +12,7 @@ export class ProductsController {
   }
 
   @Get(':id')
-  findOne(@Param('id', new ParseUUIDPipe()) id: string) {
+  findOne(@Param('id', ParseIntPipe) id: number) {
     return this.productsService.findOne(id);
   }
 }

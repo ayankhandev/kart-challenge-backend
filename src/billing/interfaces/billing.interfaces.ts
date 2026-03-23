@@ -1,10 +1,10 @@
 export interface BillingInput {
-  items: { productId: string; quantity: number }[];
+  items: { productId: number; quantity: number }[];
   couponCode?: string;
 }
 
 export interface BillingLineItem {
-  productId: string;
+  productId: number;
   quantity: number;
   unitPrice: number;
   lineTotal: number;

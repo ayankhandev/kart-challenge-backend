@@ -69,7 +69,7 @@ export class ProductsService {
     };
   }
 
-  async findOne(id: string) {
+  async findOne(id: number) {
     const [product] = await this.db
       .select()
       .from(schema.products)

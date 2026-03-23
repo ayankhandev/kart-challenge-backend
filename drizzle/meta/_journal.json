@@ -5,36 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1773944844672,
-      "tag": "0000_slim_firebrand",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1773944982413,
-      "tag": "0001_normal_sebastian_shaw",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1773949236276,
-      "tag": "0002_tiresome_ben_parker",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "7",
-      "when": 1773950714456,
-      "tag": "0003_broad_sunset_bain",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "7",
-      "when": 1774191973378,
-      "tag": "0004_rare_reavers",
+      "when": 1774264445509,
+      "tag": "0000_lean_skin",
       "breakpoints": true
     }
   ]
